@@ -75,6 +75,27 @@ h1 {
   margin: 10px 0;
 }
 
+.form-item input[type="text"],
+.form-item textarea {
+  border: none;
+  background: #f2f2f2;
+}
+
+.payment-item {
+  position: relative;
+}
+
+.payment-item label {
+  width: 100%;
+  display: inline-block;
+}
+
+.payment-item input {
+  position: absolute;
+  right: 5px;
+  top: 0;
+}
+
 /**
  * Footer
  */

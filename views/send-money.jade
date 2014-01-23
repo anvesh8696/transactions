@@ -19,10 +19,12 @@ block content
 
     p What's this payment for?
     .form-item
-      label(for="family-friends") I'm sending money to family or friends
-      input(id="family-friends", type="radio", name="payment-for", value="hey")
-      label(for="goods-services") I'm paying for goods or services
-      input(id="goods-services", type="radio", name="payment-for", value="hey")
+      .payment-item
+        label(for="family-friends") I'm sending money to family or friends
+        input(id="family-friends", type="radio", name="payment-for", value="hey")
+      .payment-item
+        label(for="goods-services") I'm paying for goods or services
+        input(id="goods-services", type="radio", name="payment-for", value="hey")
 
     .form-actions
       input(id="reset", type="reset", value="Reset")
