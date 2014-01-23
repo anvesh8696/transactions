@@ -13,7 +13,16 @@ app.use('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-  res.render('index', { title: 'What are we Doing?' });
+  res.render('index', {
+    title: 'What are we Doing?'
+  });
+});
+
+// Send Money
+app.get('/send-money', function(req, res) {
+  res.render('send-money', {
+    title: 'Send Money'
+  })
 });
 
 app.listen(3000);
