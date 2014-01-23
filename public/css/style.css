@@ -96,6 +96,10 @@ h1 {
   top: 0;
 }
 
+.form-actions {
+  display: none;
+}
+
 /**
  * Footer
  */
