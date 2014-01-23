@@ -3,9 +3,10 @@ extends layout
 block content
   form#send-money
     .form-item-wrapper
-      .form-item
+      .form-item.to
         label(for="to") To:
         input(id="to", type="text")
+        i(class="fa fa-check-circle")
 
     .form-item-wrapper
       .form-item
