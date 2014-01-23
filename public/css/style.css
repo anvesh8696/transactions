@@ -81,6 +81,12 @@ h1 {
   background: #f2f2f2;
 }
 
+.form-item textarea {
+  width: 100%;
+  resize: none;
+  height: 80px;
+}
+
 .payment-item {
   position: relative;
 }
