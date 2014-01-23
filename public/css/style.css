@@ -107,3 +107,25 @@ h1 {
   bottom: 0;
   border-top: 1px solid black;
 }
+
+.footer-content {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+.footer-content .btn {
+  position: absolute;
+  padding: 12px 0;
+  margin: 10px auto;
+  width: 45%;
+}
+
+.footer-content .btn-left {
+  left: 0;
+}
+
+.footer-content .btn-right {
+  right: 0;
+}
