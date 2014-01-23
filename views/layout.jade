@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title #{title}
+    link(rel="stylesheet", href="css/normalize.css")
+    link(rel="stylesheet", href="css/style.css")
+
+  body
+    .container
+      header.header.fixed-bar
+        h1 #{title}
+
+      section.content
+        block content
+
+      footer.footer.fixed-bar
