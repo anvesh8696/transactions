@@ -16,6 +16,7 @@ h1 {
   width: 100%;
   height: 60px;
   text-align: center;
+  z-index: 5;
 }
 
 /**
@@ -67,39 +68,72 @@ h1 {
 /**
  * Send Money
  */
-.form-item {
-  padding: 10px 5px;
+.form-item-wrapper {
   background: #F2F2F2;
   border: 1px solid #000;
   border-radius: 5px;
   margin: 10px 0;
+  position: relative;
+}
+
+.form-item {
+  padding: 10px;
+  margin: 0 auto;
 }
 
 .form-item input[type="text"],
 .form-item textarea {
   border: none;
   background: #f2f2f2;
+  margin-left: 5px;
+  width: auto;
+}
+
+.form-item #to {
+  width: calc(100% - 30px); /* precisely set input size for responsiveness */
+}
+
+.form-item #amount {
+  width: calc(100% - 130px); /* precisely set input size for responsiveness */
+}
+.form-item #currency {
+  position: absolute;
+  right: 10px;
 }
 
 .form-item textarea {
   width: 100%;
   resize: none;
   height: 80px;
+  margin: 0;
+}
+
+/* Override size to display proper border */
+.form-item.payment-for {
+  padding: 0;
 }
 
 .payment-item {
   position: relative;
 }
 
+.payment-item:first-child {
+  border-bottom: 1px solid black;
+}
+
 .payment-item label {
   width: 100%;
   display: inline-block;
+  padding: 10px; /* overriden padding from .form-item is set here */
 }
 
 .payment-item input {
-  position: absolute;
-  right: 5px;
-  top: 0;
+  display: none;
+}
+
+.payment-item.active {
+  font-weight: 600;
+  color: #C0802F;
 }
 
 .form-actions {

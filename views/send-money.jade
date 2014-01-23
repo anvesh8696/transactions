@@ -2,29 +2,34 @@ extends layout
 
 block content
   form#send-money
-    .form-item
-      label(for="to") To:
-      input(id="to", type="text")
+    .form-item-wrapper
+      .form-item
+        label(for="to") To:
+        input(id="to", type="text")
 
-    .form-item
-      label(for="amount") Amount:
-      input(id="amount", type="text")
-      select(id="currency")
-        option(val="USD") USD
-        option(val="EUR") EUR
-        option(val="JPY") JPY
+    .form-item-wrapper
+      .form-item
+        label(for="amount") Amount:
+        input(id="amount", type="text")
+        select(id="currency")
+          option(val="USD") USD
+          option(val="EUR") EUR
+          option(val="JPY") JPY
 
-    .form-item
-      textarea(id="message", placeholder="Message (optional):")
+    .form-item-wrapper
+      .form-item
+        label(id="message") Message (optional):
+        textarea(id="message")
 
     p What's this payment for?
-    .form-item
-      .payment-item
-        label(for="family-friends") I'm sending money to family or friends
-        input(id="family-friends", type="radio", name="payment-for", value="hey")
-      .payment-item
-        label(for="goods-services") I'm paying for goods or services
-        input(id="goods-services", type="radio", name="payment-for", value="hey")
+    .form-item-wrapper
+      .form-item.payment-for
+        .payment-item
+          label(for="family-friends") I'm sending money to family or friends
+          input(id="family-friends", type="radio", name="payment-for", value="hey")
+        .payment-item
+          label(for="goods-services") I'm paying for goods or services
+          input(id="goods-services", type="radio", name="payment-for", value="hey")
 
     .form-actions
       input(id="reset", type="reset", value="Reset")
