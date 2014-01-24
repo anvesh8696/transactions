@@ -1,5 +1,6 @@
 var express = require('express'),
     cons = require('consolidate'),
+    validator = require('validator'),
     app = express();
 
 // assign jade engine to .jade files
@@ -12,6 +13,10 @@ app.use('views', __dirname + '/views');
 // serve static files
 app.use(express.static(__dirname + '/public'));
 
+// use middleware to parse post data
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.get('/', function(req, res) {
   res.render('index', {
     title: 'What are we Doing?'
@@ -23,6 +28,18 @@ app.get('/send-money', function(req, res) {
   res.render('send-money', {
     title: 'Send Money'
   })
+});
+
+// Validate Email
+app.post('/validate-email', function(req, res) {
+  if (!req.body.hasOwnProperty('email')) {
+    res.statusCode = 400;
+    return res.send('Error 400: Incorrect POST syntax.');
+  }
+
+  res.json({
+    valid: validator.isEmail(req.body.email)
+  });
 });
 
 app.listen(3000);
