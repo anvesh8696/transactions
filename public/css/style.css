@@ -93,16 +93,30 @@ h1 {
   width: calc(100% - 56px); /* precisely set input size for responsiveness */
 }
 
+.form-item .loader {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  width: 16px;
+  height: 16px;
+}
+
 .form-item.to i {
   display: none;
   position: absolute;
-  right: 15px;
-  color: green;
+  right: 10px;
   font-size: 22px;
 }
 
-.form-item.to.active i {
+.form-item.to.valid i.fa-check-circle {
   display: inline-block;
+  color: green;
+}
+
+.form-item.to.invalid i.fa-times-circle {
+  display: inline-block;
+  color: red;
 }
 
 .form-item #amount {
