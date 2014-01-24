@@ -52,7 +52,7 @@
 
           clearTimeout(triggerValidationTimeout);
 
-          setTimeout(function() {
+          triggerValidationTimeout = setTimeout(function() {
             SendMoney.validateEmail(lastValue);
           }, 1000);
         }
