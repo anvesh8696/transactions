@@ -6,16 +6,21 @@
     currency: "$",
 
     init: function() {
-      this.emailWrapper = $('.form-item.to');
-      this.emailLoader  = this.emailWrapper.find('.loader');
-      this.paymentItems = $('.payment-item');
-      this.amountInput  = $('#amount');
+      this.emailWrapper     = $('.form-item.to');
+      this.emailLoader      = this.emailWrapper.find('.loader');
+      this.emailInput       = $('#to')
+      this.amountInput      = $('#amount');
+      this.currencySelector = $('#currency');
+      this.message          = $('#message');
+      this.paymentItems     = $('.payment-item');
+
+      this.overlay          = $('#overlay');
 
       SendMoney.bindEvents();
     },
 
     // Semaphore variable to avoid multiple server requests
-    isEmailBeingValidate: false,
+    isEmailBeingValidated: false,
 
     bindEvents: function() {
       SendMoney.bindValidations();
@@ -28,6 +33,7 @@
 
       // Buttons
       SendMoney.bindClearButton();
+      SendMoney.bindNextButton();
     },
 
     bindValidations: function() {
@@ -35,16 +41,14 @@
     },
 
     bindEmailValidation: function() {
-      var emailInput = $('#to'),
-
-          lastValue = emailInput.val(),
+      var lastValue = SendMoney.emailInput.val(),
 
           // UX - trigger validation after some determined time
           triggerValidationTimeout;
 
-      emailInput.on('keyup', function(e) {
-        if (lastValue !== emailInput.val()) {
-          lastValue = emailInput.val();
+      SendMoney.emailInput.on('keyup', function(e) {
+        if (lastValue !== SendMoney.emailInput.val()) {
+          lastValue = SendMoney.emailInput.val();
 
           clearTimeout(triggerValidationTimeout);
 
@@ -71,7 +75,7 @@
     },
 
     bindCurrencySelection: function() {
-      $('#currency').on('change', function() {
+      SendMoney.currencySelector.on('change', function() {
         SendMoney.currency = $(this).find('option:selected').attr('rel');
 
         // update value
@@ -104,9 +108,9 @@
     },
 
     validateEmail: function(email) {
-      if (!SendMoney.isEmailBeingValidate) {
+      if (!SendMoney.isEmailBeingValidated) {
         SendMoney.showEmailLoading();
-        SendMoney.isEmailBeingValidate = true;
+        SendMoney.isEmailBeingValidated = true;
 
         $.post('/validate-email', { email: email }, function(response) {
           SendMoney.hideEmailLoading();
@@ -118,7 +122,7 @@
             SendMoney.invalidEmailDisplay();
           }
 
-          SendMoney.isEmailBeingValidate = false;
+          SendMoney.isEmailBeingValidated = false;
         });
       }
     },
@@ -170,6 +174,37 @@
         // do not append # to URL - more friendly
         e.preventDefault();
       })
+    },
+
+    bindNextButton: function() {
+      $('.next-btn').on('click', function(e) {
+        SendMoney.postTransaction();
+
+        // do not append # to URL - more friendly
+        e.preventDefault();
+      });
+    },
+
+    postTransaction: function() {
+      SendMoney.overlay.show();
+
+      $.post('/transactions', SendMoney.getFormData(), function(response) {
+        if (response.valid) {
+
+        }
+
+        SendMoney.overlay.hide();
+      });
+    },
+
+    getFormData: function() {
+      return {
+        to:          SendMoney.emailInput.val(),
+        amount:      SendMoney.amountInput.val().replace(), // remove non-numbers
+        currency:    SendMoney.currencySelector.val(),
+        message:     SendMoney.message.val(),
+        payment_for: SendMoney.paymentItems.filter('.active').find('input').val()
+      }
     }
   };
 

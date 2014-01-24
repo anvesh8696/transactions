@@ -46,5 +46,14 @@ app.post('/validate-email', function(req, res) {
   }, 1000);
 });
 
+// New Transaction
+app.post('/transactions', function(req, res) {
+  // node is too fast, pretend server is slow to see loading screen lol :P
+  setTimeout(function() {
+    console.log(req.body);
+    res.end()
+  }, 1000);
+});
+
 app.listen(3000);
 console.log('Server listening on port 3000');
