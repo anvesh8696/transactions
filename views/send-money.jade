@@ -13,11 +13,11 @@ block content
     .form-item-wrapper
       .form-item
         label(for="amount") Amount:
-        input(id="amount", type="text")
+        input(id="amount", type="text", value="$0.00")
         select(id="currency")
-          option(val="USD") USD
-          option(val="EUR") EUR
-          option(val="JPY") JPY
+          option(val="USD", rel="$") USD
+          option(val="EUR", rel="€") EUR
+          option(val="JPY", rel="¥") JPY
 
     .form-item-wrapper
       .form-item

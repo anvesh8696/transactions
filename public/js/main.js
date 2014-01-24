@@ -3,10 +3,13 @@
 
   // namespace for better semantics
   var SendMoney = {
+    currency: "$",
+
     init: function() {
       this.emailWrapper = $('.form-item.to');
       this.emailLoader  = this.emailWrapper.find('.loader');
       this.paymentItems = $('.payment-item');
+      this.amountInput  = $('#amount');
 
       SendMoney.bindEvents();
     },
@@ -16,8 +19,12 @@
 
     bindEvents: function() {
       SendMoney.bindValidations();
+
       SendMoney.bindPaymentForSelection();
       SendMoney.bindFriendlySelection();
+
+      SendMoney.bindAmountBehavior();
+      SendMoney.bindCurrencySelection();
 
       // Buttons
       SendMoney.bindClearButton();
@@ -25,7 +32,6 @@
 
     bindValidations: function() {
       SendMoney.bindEmailValidation();
-      SendMoney.bindAmountBehavior();
     },
 
     bindEmailValidation: function() {
@@ -50,22 +56,31 @@
     },
 
     bindAmountBehavior: function() {
-      var amountInput = $('#amount'),
-          lastValue;
+      var lastValue;
 
-      amountInput.on('input', function(e) {
+      SendMoney.amountInput.on('input', function(e) {
         var newValue = e.target.value,
-            newFormattedValue = SendMoney.formatMoney(newValue, '$');
+            newFormattedValue = SendMoney.formatMoney(newValue);
 
         if (lastValue !== newValue) {
-          amountInput.val(newFormattedValue);
+          SendMoney.amountInput.val(newFormattedValue);
           lastValue = newFormattedValue;
           e.preventDefault();
         }
       });
     },
 
-    formatMoney: function(value, prefix) {
+    bindCurrencySelection: function() {
+      $('#currency').on('change', function() {
+        SendMoney.currency = $(this).find('option:selected').attr('rel');
+
+        // update value
+        var newValue = SendMoney.formatMoney(SendMoney.amountInput.val());
+        SendMoney.amountInput.val(newValue);
+      });
+    },
+
+    formatMoney: function(value) {
       // remove previous formatting
       value = value.toString().replace(/[^0-9]/g, '');
       // empty string defaults to 0
@@ -74,8 +89,6 @@
       var digits = value.split(''),
           number = digits.slice(0, -2).join(''),
           precision = digits.slice(-2).join('');
-
-      prefix = prefix || '$';
 
       // fix minimum number size
       number = number.length ? number.replace(/^0*([0-9]+)$/, "$1") : '0';
@@ -87,7 +100,7 @@
                .replace(/(\d{3})(?=\d)/g, "$1,")   // add the commas
                .split('').reverse().join('');      // reverse it back
 
-      return prefix + number + '.' + precision;
+      return SendMoney.currency + number + '.' + precision;
     },
 
     validateEmail: function(email) {
