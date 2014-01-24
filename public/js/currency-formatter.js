@@ -1,6 +1,8 @@
 var moneyFormatter = {
   format: function(value, prefix) {
-    var digits = value.toString().split(''),
+    value = value.toString().replace(/[^0-9]/g, '')
+
+    var digits = value.split(''),
         number = digits.slice(0, -2).join(''),
         precision = digits.slice(-2).join('');
 
@@ -32,5 +34,7 @@ assert(moneyFormatter.format(1) === '$0.01');
 assert(moneyFormatter.format(10) === '$0.10');
 assert(moneyFormatter.format(100000) === '$1,000.00');
 assert(moneyFormatter.format(100000, "€") === '€1,000.00');
+assert(moneyFormatter.format("$10.15") === '$10.15');
+
 
 console.log('success!');
