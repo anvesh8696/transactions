@@ -21,7 +21,7 @@ block content
 
     .form-item-wrapper
       .form-item
-        label(id="message") Message (optional):
+        label(for="message") Message (optional):
         textarea(id="message")
 
     p What's this payment for?
@@ -29,10 +29,10 @@ block content
       .form-item.payment-for
         .payment-item
           label(for="family-friends") I'm sending money to family or friends
-          input(id="family-friends", type="radio", name="payment-for", value="hey")
+          input(id="family-friends", type="radio", name="payment-for", value="family_friends")
         .payment-item
           label(for="goods-services") I'm paying for goods or services
-          input(id="goods-services", type="radio", name="payment-for", value="hey")
+          input(id="goods-services", type="radio", name="payment-for", value="goods_services")
 
     .form-actions
       input(id="reset", type="reset", value="Reset")
