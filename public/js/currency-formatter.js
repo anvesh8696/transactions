@@ -1,6 +1,6 @@
 var moneyFormatter = {
   format: function(value) {
-    return "$0.00";
+    return "$0.0" + value;
   }
 };
 
@@ -13,5 +13,6 @@ function assert(truthiness) {
 
 // Test 1
 assert(moneyFormatter.format(0) === '$0.00');
+assert(moneyFormatter.format(1) === '$0.01');
 
 console.log('success!');
