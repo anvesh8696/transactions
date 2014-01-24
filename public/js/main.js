@@ -25,7 +25,7 @@
 
     bindValidations: function() {
       SendMoney.bindEmailValidation();
-      // SendMoney.bindAmountValidation();
+      SendMoney.bindAmountBehavior();
     },
 
     bindEmailValidation: function() {
@@ -45,6 +45,22 @@
           setTimeout(function() {
             SendMoney.validateEmail(lastValue);
           }, 1000);
+        }
+      });
+    },
+
+    bindAmountBehavior: function() {
+      var amountInput = $('#amount'),
+          lastValue;
+
+      amountInput.on('input', function(e) {
+        var newValue = e.target.value,
+            newFormattedValue = SendMoney.formatMoney(newValue, '$');
+
+        if (lastValue !== newValue) {
+          amountInput.val(newFormattedValue);
+          lastValue = newFormattedValue;
+          e.preventDefault();
         }
       });
     },
