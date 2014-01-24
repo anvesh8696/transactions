@@ -50,7 +50,10 @@
     },
 
     formatMoney: function(value, prefix) {
-      value = value.toString().replace(/[^0-9]/g, '')
+      // remove previous formatting
+      value = value.toString().replace(/[^0-9]/g, '');
+      // empty string defaults to 0
+      value = value || "0";
 
       var digits = value.split(''),
           number = digits.slice(0, -2).join(''),
@@ -59,7 +62,7 @@
       prefix = prefix || '$';
 
       // fix minimum number size
-      number = number.length ? number : '0';
+      number = number.length ? number.replace(/^0*([0-9]+)$/, "$1") : '0';
       precision = precision.length === 1 ? '0' + precision : precision;
 
       // add commas for thousands
