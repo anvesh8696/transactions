@@ -49,6 +49,28 @@
       });
     },
 
+    formatMoney: function(value, prefix) {
+      value = value.toString().replace(/[^0-9]/g, '')
+
+      var digits = value.split(''),
+          number = digits.slice(0, -2).join(''),
+          precision = digits.slice(-2).join('');
+
+      prefix = prefix || '$';
+
+      // fix minimum number size
+      number = number.length ? number : '0';
+      precision = precision.length === 1 ? '0' + precision : precision;
+
+      // add commas for thousands
+      // kind of black magic
+      number = number.split('').reverse().join('') // reverse string
+               .replace(/(\d{3})(?=\d)/g, "$1,")   // add the commas
+               .split('').reverse().join('');      // reverse it back
+
+      return prefix + number + '.' + precision;
+    },
+
     validateEmail: function(email) {
       if (!SendMoney.isEmailBeingValidate) {
         SendMoney.showEmailLoading();
