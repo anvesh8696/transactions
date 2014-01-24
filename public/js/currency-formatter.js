@@ -1,10 +1,12 @@
 var moneyFormatter = {
-  format: function(value) {
+  format: function(value, prefix) {
     var digits = value.toString().split(''),
         number = digits.slice(0, -2).join(''),
         precision = digits.slice(-2).join('');
 
-    // fix minimum spots
+    prefix = prefix || '$';
+
+    // fix minimum number size
     number = number.length ? number : '0';
     precision = precision.length === 1 ? '0' + precision : precision;
 
@@ -14,7 +16,7 @@ var moneyFormatter = {
              .replace(/(\d{3})(?=\d)/g, "$1,")   // add the commas
              .split('').reverse().join('');      // reverse it back
 
-    return '$' + number + '.' + precision;
+    return prefix + number + '.' + precision;
   }
 };
 
@@ -25,12 +27,10 @@ function assert(truthiness) {
   }
 }
 
-console.log(moneyFormatter.format(100000))
-
-// Test 1
 assert(moneyFormatter.format(0) === '$0.00');
 assert(moneyFormatter.format(1) === '$0.01');
 assert(moneyFormatter.format(10) === '$0.10');
 assert(moneyFormatter.format(100000) === '$1,000.00');
+assert(moneyFormatter.format(100000, "€") === '€1,000.00');
 
 console.log('success!');
