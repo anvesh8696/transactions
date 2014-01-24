@@ -10,19 +10,35 @@
 
     bindEvents: function() {
       SendMoney.bindPaymentForSelection();
+
+      // Buttons
+      SendMoney.bindClearButton();
     },
 
     bindPaymentForSelection: function() {
-      var paymentFor = $('.payment-for'),
-          paymentItems = paymentFor.find('.payment-item');
+      var paymentFor = $('.payment-for');
 
       paymentFor.on('click', '.payment-item', function(e) {
-        paymentItems.removeClass('active');
+        SendMoney.deactivateAllPaymentItems();
         $(this).addClass('active');
-
-        // no need to keep bubbling
-        e.stopPropagation();
       });
+    },
+
+    deactivateAllPaymentItems: function() {
+      $('.payment-item').removeClass('active');
+    },
+
+    bindClearButton: function() {
+      // hidden form input element
+      var resetButton = $('#reset');
+
+      $('.clear-btn').on('click', function(e) {
+        resetButton.click();
+        SendMoney.deactivateAllPaymentItems();
+
+        // do not append # to URL - more friendly
+        e.preventDefault();
+      })
     }
   };
 
