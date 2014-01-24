@@ -1,6 +1,9 @@
-var express = require('express'),
-    cons = require('consolidate'),
-    app = express();
+var express     = require('express'),
+    cons        = require('consolidate'),
+    validator   = require('validator'),
+    app         = express();
+
+var transactionValidator = require('./transaction-validator');
 
 // assign jade engine to .jade files
 app.engine('jade', cons.jade);
@@ -12,8 +15,45 @@ app.use('views', __dirname + '/views');
 // serve static files
 app.use(express.static(__dirname + '/public'));
 
+// use middleware to parse post data
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.get('/', function(req, res) {
-  res.render('index', { title: 'What are we Doing?' });
+  res.render('index', {
+    title: 'What are we Doing?'
+  });
+});
+
+// Send Money
+app.get('/send-money', function(req, res) {
+  res.render('send-money', {
+    title: 'Send Money'
+  })
+});
+
+// Validate Email
+app.post('/validate-email', function(req, res) {
+  // node is too fast, pretend server is slow to see loading icon lol :P
+  setTimeout(function() {
+    if (!req.body.hasOwnProperty('email')) {
+      res.statusCode = 400;
+      return res.send('Error 400: Incorrect POST syntax.');
+    }
+
+    res.json({
+      valid: transactionValidator.isValidEmail(req.body.email)
+    });
+
+  }, 1000);
+});
+
+// New Transaction
+app.post('/transactions', function(req, res) {
+  // node is too fast, pretend server is slow to see loading screen lol :P
+  setTimeout(function() {
+    res.json(transactionValidator.validate(req.body));
+  }, 1000);
 });
 
 app.listen(3000);

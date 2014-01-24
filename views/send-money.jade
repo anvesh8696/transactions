@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  form#send-money
+    .form-item-wrapper
+      .form-item.to
+        label(for="to") To:
+        input(id="to", type="text", placeholder="test@example.com")
+        img(class="loader", src="images/ajax-loader.gif")
+        i(class="fa fa-check-circle")
+        i(class="fa fa-times-circle")
+
+    .form-item-wrapper
+      .form-item.amount
+        label(for="amount") Amount:
+        input(id="amount", type="text", value="$0.00")
+        i(class="fa fa-times-circle")
+        select(id="currency")
+          option(val="USD", rel="$") USD
+          option(val="EUR", rel="€") EUR
+          option(val="JPY", rel="¥") JPY
+
+    .form-item-wrapper
+      .form-item
+        label(for="message") Message (optional):
+        textarea(id="message")
+
+    p What's this payment for?
+    .form-item-wrapper
+      .form-item.payment-for
+        div(id="payment-for")
+          .payment-item
+            label(for="family-friends") I'm sending money to family or friends
+            input(id="family-friends", type="radio", name="payment-for", value="family_friends")
+          .payment-item
+            label(for="goods-services") I'm paying for goods or services
+            input(id="goods-services", type="radio", name="payment-for", value="goods_services")
+          i(class="fa fa-times-circle")
+
+    .form-actions
+      input(id="reset", type="reset", value="Reset")
+
+block footer
+  .default
+    a(href="#", class="btn btn-left clear-btn") Clear
+    a(href="#", class="btn btn-right next-btn") Next
+
+  .on-success
+    a(href="/send-money", class="btn btn-left") Send Money
+    a(href="/transactions", class="btn btn-right") Transaction History

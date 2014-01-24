@@ -16,6 +16,7 @@ h1 {
   width: 100%;
   height: 60px;
   text-align: center;
+  z-index: 5;
 }
 
 /**
@@ -61,7 +62,145 @@ h1 {
 .content {
   width: 80%;
   margin: 0 auto;
-  padding-top: 60px;
+  padding: 70px 0;
+}
+
+/**
+ * Send Money
+ */
+.form-item-wrapper {
+  background: #F2F2F2;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.form-item {
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.form-item input[type="text"],
+.form-item textarea {
+  border: none;
+  background: #f2f2f2;
+  margin-left: 5px;
+  width: auto;
+}
+
+.form-item #to {
+  width: calc(100% - 56px); /* precisely set input size for responsiveness */
+}
+
+.form-item .loader {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  width: 16px;
+  height: 16px;
+}
+
+.form-item i {
+  display: none;
+  position: absolute;
+  font-size: 22px;
+}
+
+  /**
+   * icon placements for each field
+   */
+  .form-item.to i {
+    right: 10px;
+  }
+
+  .form-item.amount i {
+    right: 75px;
+  }
+
+  .form-item.payment-for i {
+    top: -36px; /* :( */
+    left: 180px;
+  }
+
+.form-item.valid i.fa-check-circle {
+  display: inline-block;
+  color: green;
+}
+
+.form-item.invalid i.fa-times-circle {
+  display: inline-block;
+  color: red;
+}
+
+.form-item #amount {
+  width: calc(100% - 155px); /* precisely set input size for responsiveness */
+}
+.form-item #currency {
+  position: absolute;
+  right: 10px;
+}
+
+.form-item textarea {
+  width: 100%;
+  resize: none;
+  height: 80px;
+  margin: 0;
+}
+
+/* Override size to display proper border */
+.form-item.payment-for {
+  padding: 0;
+}
+
+.payment-item {
+  position: relative;
+}
+
+.payment-item:first-child {
+  border-bottom: 1px solid black;
+}
+
+.payment-item label {
+  width: 100%;
+  display: inline-block;
+  padding: 10px; /* overriden padding from .form-item is set here */
+}
+
+.payment-item input {
+  display: none;
+}
+
+.payment-item.active {
+  font-weight: 600;
+  color: #C0802F;
+}
+
+.payment-item.active :after {
+  content: '✓';
+  position: absolute;
+  right: 15px;
+}
+
+.form-actions {
+  display: none;
+}
+
+/**
+ * Success message
+ */
+.success-msg {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.success-msg p:after {
+  display:block;
+  margin-top: 15px;
+  content: '✓';
+  color: #C0802F;
+  font-size: 400%;
 }
 
 /**
@@ -70,4 +209,49 @@ h1 {
 .footer {
   bottom: 0;
   border-top: 1px solid black;
+}
+
+.footer-content {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+.footer-content .btn {
+  position: absolute;
+  padding: 12px 0;
+  margin: 10px auto;
+  width: 45%;
+}
+
+.footer-content .btn-left {
+  left: 0;
+}
+
+.footer-content .btn-right {
+  right: 0;
+}
+
+.footer-content .on-success {
+  display: none;
+}
+
+/**
+ * Overlay
+ */
+#overlay {
+  display: none;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, .75);
+}
+
+#overlay img {
+  position: absolute;
+  top: calc(50% - 16px); /* centralize exatcly */
 }
