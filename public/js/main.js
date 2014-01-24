@@ -3,7 +3,7 @@
 
   // namespace for better semantics
   var SendMoney = {
-    currency: "$",
+    currencyPrefix: "$",
 
     init: function() {
       this.emailWrapper     = $('.form-item.to');
@@ -76,7 +76,7 @@
 
     bindCurrencySelection: function() {
       SendMoney.currencySelector.on('change', function() {
-        SendMoney.currency = $(this).find('option:selected').attr('rel');
+        SendMoney.currencyPrefix = $(this).find('option:selected').attr('rel');
 
         // update value
         var newValue = SendMoney.formatMoney(SendMoney.amountInput.val());
@@ -104,7 +104,7 @@
                .replace(/(\d{3})(?=\d)/g, "$1,")   // add the commas
                .split('').reverse().join('');      // reverse it back
 
-      return SendMoney.currency + number + '.' + precision;
+      return SendMoney.currencyPrefix + number + '.' + precision;
     },
 
     validateEmail: function(email) {
