@@ -10,9 +10,18 @@
 
     bindEvents: function() {
       SendMoney.bindPaymentForSelection();
+      SendMoney.bindFriendlySelection();
 
       // Buttons
       SendMoney.bindClearButton();
+    },
+
+    bindFriendlySelection: function() {
+      // Select first input field when the click occurs on .form-item
+      // just makes it more usable..
+      $('.form-item').on('click', function(e) {
+        $(this).find('input:first, textarea:first').focus();
+      });
     },
 
     bindPaymentForSelection: function() {
