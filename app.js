@@ -1,7 +1,9 @@
-var express = require('express'),
-    cons = require('consolidate'),
-    validator = require('validator'),
-    app = express();
+var express     = require('express'),
+    cons        = require('consolidate'),
+    validator   = require('validator'),
+    app         = express();
+
+var transactionValidator = require('./transaction-validator');
 
 // assign jade engine to .jade files
 app.engine('jade', cons.jade);
@@ -40,7 +42,7 @@ app.post('/validate-email', function(req, res) {
     }
 
     res.json({
-      valid: validator.isEmail(req.body.email)
+      valid: transactionValidator.isValidEmail(req.body.email)
     });
 
   }, 1000);
@@ -50,8 +52,7 @@ app.post('/validate-email', function(req, res) {
 app.post('/transactions', function(req, res) {
   // node is too fast, pretend server is slow to see loading screen lol :P
   setTimeout(function() {
-    console.log(req.body);
-    res.end()
+    res.send(transactionValidator.validate(req.body));
   }, 1000);
 });
 
