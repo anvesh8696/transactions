@@ -73,11 +73,14 @@ app.get('/transactions', function(req, res) {
 
 // Paginated Transactions
 app.get('/transactions/:page', function(req, res) {
-  var page = parseInt(req.params.page, 10) || 0,
-      currentUserId = helpers.currentUser().id,
-      offset = transactionsPerQuery * page;
+  // node is too fast, pretend server is slow to see loading icon lol :P
+  setTimeout(function() {
+    var page = parseInt(req.params.page, 10) || 0,
+        currentUserId = helpers.currentUser().id,
+        offset = transactionsPerQuery * (page - 1);
 
-  res.json(transactions.getFormattedTransactions(currentUserId, offset, transactionsPerQuery));
+    res.json(transactions.getFormattedTransactions(currentUserId, offset, transactionsPerQuery));
+  }, 800);
 });
 
 app.listen(3000);
