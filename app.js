@@ -3,7 +3,9 @@ var express     = require('express'),
     validator   = require('validator'),
     app         = express();
 
-var transactionValidator = require('./transaction-validator');
+var transactionValidator = require('./transaction-validator'),
+    helpers              = require('./helpers'),
+    transactions         = require('./transactions');
 
 // assign jade engine to .jade files
 app.engine('jade', cons.jade);
@@ -54,6 +56,11 @@ app.post('/transactions', function(req, res) {
   setTimeout(function() {
     res.json(transactionValidator.validate(req.body));
   }, 1000);
+});
+
+// Transactions list
+app.get('/transactions', function(res, res) {
+  res.json(transactions.getTransactions(helpers.currentUser().id, 0, 3));
 });
 
 app.listen(3000);
