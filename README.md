@@ -28,7 +28,8 @@ This is a web-based app that allows PayPal users to send money to other users.
 * <del>Layout</del>
 
 ###Transaction History
-* Load mocked data in a table
+* <del>Load mocked data in a table</del>
+* Layout
 * Handle names that don't fit
 * Infinite scroll listing
 
