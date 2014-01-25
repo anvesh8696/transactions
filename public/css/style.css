@@ -233,6 +233,12 @@ h1 {
   right: 0;
 }
 
+.footer-content .btn-center {
+  position: static;
+  display: block;
+  width: 100%;
+}
+
 .footer-content .on-success {
   display: none;
 }
