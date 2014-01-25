@@ -1,7 +1,8 @@
 var validator = require('validator'),
     _         = require('underscore');
 
-var userEmails = _.pluck(require('./mocks').users, 'email');
+var users       = require('./mocks').users,
+    usersEmails = _.pluck(users, 'email');
 
 module.exports = (function() {
   var fields = [
@@ -12,25 +13,42 @@ module.exports = (function() {
     { name: 'payment_for', required: true }
   ];
 
+  function getSuccessMessage(currency, amount, name) {
+    return [
+      "You have sent",
+      amount,
+      currency,
+      "to",
+      name + "!"
+    ].join(' ');
+  }
+
+  function getUserNameFromEmail(email) {
+    email = email.toLowerCase();
+
+    var user = users[usersEmails.indexOf(email)];
+
+    return user ? user.name : null;
+  }
+
   return {
     isValidEmail: function(email) {
-      return validator.isEmail(email) && userEmails.indexOf(email) >= 0;
+      return validator.isEmail(email) && usersEmails.indexOf(email) >= 0;
     },
 
     validate: function(reqBody) {
-      var isValid = true,
-          messages = {};
+      var errors = {},
+          message;
 
       for (var i = 0; i < fields.length; ++i) {
         if (fields[i].required
            && (!reqBody.hasOwnProperty(fields[i].name) || reqBody[fields[i].name].length === 0)) {
-          messages[fields[i].name] = fields[i].name + " field is missing.";
-          isValid = false;
+          errors[fields[i].name] = fields[i].name + " field is missing.";
         }
       }
 
       if (reqBody.hasOwnProperty('to') && !this.isValidEmail(reqBody.to)) {
-        messages['to'] = "Email has to be from a valid user.";
+        errors['to'] = "Email has to be from a valid user.";
       }
 
       if (reqBody.hasOwnProperty('amount')) {
@@ -38,13 +56,29 @@ module.exports = (function() {
 
         if (filteredAmount.indexOf('-') >= 0
             || Math.ceil(parseFloat(filteredAmount)) === 0) {
-          messages['amount'] = "Only positive amounts are allowed.";
+          errors['amount'] = "Only positive amounts are allowed.";
         }
+      }
+
+      var isValid = Object.keys(errors).length === 0;
+      if (isValid) {
+        message = getSuccessMessage(
+          reqBody.currency,
+          reqBody.amount,
+          getUserNameFromEmail(reqBody.to)
+        );
+
+        // wrap it up
+        message = '<div class="success-msg"><p>' + message + '</p></div>';
+      }
+      else {
+        message = 'fail';
       }
 
       return {
         valid: isValid,
-        messages: messages
+        errors: errors,
+        message: message
       }
     }
   };
