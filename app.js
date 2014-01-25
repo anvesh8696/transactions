@@ -52,7 +52,7 @@ app.post('/validate-email', function(req, res) {
 app.post('/transactions', function(req, res) {
   // node is too fast, pretend server is slow to see loading screen lol :P
   setTimeout(function() {
-    res.send(transactionValidator.validate(req.body));
+    res.json(transactionValidator.validate(req.body));
   }, 1000);
 });
 
