@@ -26,6 +26,106 @@ var users = [
 ];
 
 var transactions = [
+  {
+    id           : 1,
+    from_user_id : 1,
+    to_user_id   : 2,
+    amount       : 1000, // cents
+    currency     : 'USD',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now()
+  },
+  {
+    id           : 2,
+    from_user_id : 1,
+    to_user_id   : 2,
+    amount       : 2000, // cents
+    currency     : 'USD',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now()
+  },
+  {
+    id           : 3,
+    from_user_id : 1,
+    to_user_id   : 4,
+    amount       : 1525, // cents
+    currency     : 'EUR',
+    message      : 'coffee',
+    payment_for  : 'goods_services',
+    created_at   : Date.now()
+  },
+  {
+    id           : 4,
+    from_user_id : 3,
+    to_user_id   : 4,
+    amount       : 1525, // cents
+    currency     : 'JPY',
+    message      : 'coffee in japan',
+    payment_for  : 'goods_services',
+    created_at   : Date.now()
+  },
+  {
+    id           : 5,
+    from_user_id : 3,
+    to_user_id   : 1,
+    amount       : 1525, // cents
+    currency     : 'EUR',
+    message      : 'coffee',
+    payment_for  : 'goods_services',
+    created_at   : Date.now()
+  },
+  {
+    id           : 6,
+    from_user_id : 1,
+    to_user_id   : 3,
+    amount       : 2525, // cents
+    currency     : 'EUR',
+    message      : 'coffee',
+    payment_for  : 'goods_services',
+    created_at   : Date.now()
+  },
+  {
+    id           : 7,
+    from_user_id : 1,
+    to_user_id   : 3,
+    amount       : 125, // cents
+    currency     : 'EUR',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now()
+  },
+  {
+    id           : 8,
+    from_user_id : 1,
+    to_user_id   : 4,
+    amount       : 1525, // cents
+    currency     : 'EUR',
+    message      : 'coffee',
+    payment_for  : 'family_friends',
+    created_at   : Date.now()
+  },
+  {
+    id           : 9,
+    from_user_id : 1,
+    to_user_id   : 2,
+    amount       : 33525, // cents
+    currency     : 'USD',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now()
+  },
+  {
+    id           : 10,
+    from_user_id : 1,
+    to_user_id   : 4,
+    amount       : 1525, // cents
+    currency     : 'EUR',
+    message      : 'coffee in europe',
+    payment_for  : 'family_friends',
+    created_at   : Date.now()
+  }
 ];
 
 module.exports = {
