@@ -6,26 +6,26 @@ This is a web-based app that allows PayPal users to send money to other users.
 
 ##Stories
 ###Initial Screen
-* <s>Static responsive web page</s>
+* <del>Static responsive web page</del>
 
 ###Send Money Screen
-* <s>Form</s>
-* <s>Email validation</s>
-* <s>Amount validation</s>
-* <s>Form layout</s>
-* <s>Currency selection</s>
-* <s>Payment for options</s>
-* <s>Clear / Next buttons</s>
+* <del>Form</del>
+* <del>Email validation</del>
+* <del>Amount validation</del>
+* <del>Form layout</del>
+* <del>Currency selection</del>
+* <del>Payment for options</del>
+* <del>Clear / Next buttons</del>
 * Handle errors after submit
 
 ###Loading Screen
-* <s>Serialize form data on submit? REST API?</s>
-* <s>Overlay layout</s>
-* <s>Centralize loading GIF</s>
+* <del>Serialize form data on submit? REST API?</del>
+* <del>Overlay layout</del>
+* <del>Centralize loading GIF</del>
 
 ###Send Money Success
-* <s>Display message with amount and currency</s>
-* <s>Layout</s>
+* <del>Display message with amount and currency</del>
+* <del>Layout</del>
 
 ###Transaction History
 * Load mocked data in a table
