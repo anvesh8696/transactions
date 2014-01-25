@@ -60,13 +60,22 @@ app.post('/transactions', function(req, res) {
   }, 1000);
 });
 
-// Transactions list
+// Transactions list on load
 app.get('/transactions', function(req, res) {
-  var page = req.query.page || 0,
+  var currentUserId = helpers.currentUser().id
+
+  res.render('transactions', {
+    transactions: transactions.getFormattedTransactions(currentUserId, 0, transactionsPerQuery)
+  });
+});
+
+// Paginated Transactions
+app.get('/transactions/:page', function(req, res) {
+  var page = parseInt(req.params.page, 10) || 0,
       currentUserId = helpers.currentUser().id,
       offset = transactionsPerQuery * page;
 
-  res.json(transactions.getTransactions(currentUserId, offset, transactionsPerQuery));
+  res.json(transactions.getFormattedTransactions(currentUserId, offset, transactionsPerQuery));
 });
 
 app.listen(3000);

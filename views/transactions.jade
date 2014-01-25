@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  table.transactions
+    thead
+      th.date Date
+      th.name Name
+      th.amount Amount
+    tbody
+      each transaction in transactions
+        tr.row
+          td= transaction.date
+          td= transaction.name
+          td= transaction['formatted-amount']
+
+block footer
+  a(href="/", class="btn btn-center") Back
