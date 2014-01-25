@@ -38,26 +38,19 @@ app.get('/send-money', function(req, res) {
 
 // Validate Email
 app.post('/validate-email', function(req, res) {
-  // node is too fast, pretend server is slow to see loading icon lol :P
-  setTimeout(function() {
-    if (!req.body.hasOwnProperty('email')) {
-      res.statusCode = 400;
-      return res.send('Error 400: Incorrect POST syntax.');
-    }
+  if (!req.body.hasOwnProperty('email')) {
+    res.statusCode = 400;
+    return res.send('Error 400: Incorrect POST syntax.');
+  }
 
-    res.json({
-      valid: transactionValidator.isValidEmail(req.body.email)
-    });
-
-  }, 1000);
+  res.json({
+    valid: transactionValidator.isValidEmail(req.body.email)
+  });
 });
 
 // New Transaction
 app.post('/transactions', function(req, res) {
-  // node is too fast, pretend server is slow to see loading screen lol :P
-  setTimeout(function() {
-    res.json(transactionValidator.validate(req.body));
-  }, 1000);
+  res.json(transactionValidator.validate(req.body));
 });
 
 // Transactions list on load
@@ -73,14 +66,11 @@ app.get('/transactions', function(req, res) {
 
 // Paginated Transactions
 app.get('/transactions/:page', function(req, res) {
-  // node is too fast, pretend server is slow to see loading icon lol :P
-  setTimeout(function() {
-    var page = parseInt(req.params.page, 10) || 0,
-        currentUserId = helpers.currentUser().id,
-        offset = transactionsPerQuery * (page - 1);
+  var page = parseInt(req.params.page, 10) || 0,
+      currentUserId = helpers.currentUser().id,
+      offset = transactionsPerQuery * (page - 1);
 
-    res.json(transactions.getFormattedTransactions(currentUserId, offset, transactionsPerQuery));
-  }, 800);
+  res.json(transactions.getFormattedTransactions(currentUserId, offset, transactionsPerQuery));
 });
 
 app.listen(process.env.PORT || 3000);
