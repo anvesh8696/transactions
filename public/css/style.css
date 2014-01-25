@@ -65,6 +65,12 @@ h1 {
   padding: 70px 0;
 }
 
+/* override width for specific Transaction history page */
+.transaction-history .content {
+  width: 100%;
+  padding: 60px 0;
+}
+
 /**
  * Send Money
  */
@@ -241,6 +247,22 @@ h1 {
 
 .footer-content .on-success {
   display: none;
+}
+
+/**
+ * Transaction History
+ */
+.transactions {
+  width: 100%;
+}
+
+.transactions td {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.transactions tr:nth-child(odd) {
+  background: #D6A58A;
 }
 
 /**
