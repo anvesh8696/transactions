@@ -125,7 +125,77 @@ var transactions = [
     message      : 'coffee in europe',
     payment_for  : 'family_friends',
     created_at   : Date.now() + 85
-  }
+  },
+  {
+    id           : 11,
+    from_user_id : 1,
+    to_user_id   : 2,
+    amount       : 33525, // cents
+    currency     : 'USD',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 95
+  },
+  {
+    id           : 12,
+    from_user_id : 1,
+    to_user_id   : 4,
+    amount       : 123123, // cents
+    currency     : 'JPY',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 105
+  },
+  {
+    id           : 13,
+    from_user_id : 1,
+    to_user_id   : 2,
+    amount       : 1525, // cents
+    currency     : 'EUR',
+    message      : 'coffee',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 115
+  },
+  {
+    id           : 14,
+    from_user_id : 1,
+    to_user_id   : 2,
+    amount       : 373525, // cents
+    currency     : 'EUR',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 125
+  },
+  {
+    id           : 15,
+    from_user_id : 1,
+    to_user_id   : 3,
+    amount       : 1525, // cents
+    currency     : 'EUR',
+    message      : 'coffee in europe',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 135
+  },
+  {
+    id           : 16,
+    from_user_id : 1,
+    to_user_id   : 3,
+    amount       : 33525, // cents
+    currency     : 'USD',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 145
+  },
+  {
+    id           : 17,
+    from_user_id : 1,
+    to_user_id   : 3,
+    amount       : 123123, // cents
+    currency     : 'JPY',
+    message      : '',
+    payment_for  : 'family_friends',
+    created_at   : Date.now() + 155
+  },
 ];
 
 module.exports = {
