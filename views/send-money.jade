@@ -11,9 +11,10 @@ block content
         i(class="fa fa-times-circle")
 
     .form-item-wrapper
-      .form-item
+      .form-item.amount
         label(for="amount") Amount:
         input(id="amount", type="text", value="$0.00")
+        i(class="fa fa-times-circle")
         select(id="currency")
           option(val="USD", rel="$") USD
           option(val="EUR", rel="€") EUR
@@ -27,12 +28,14 @@ block content
     p What's this payment for?
     .form-item-wrapper
       .form-item.payment-for
-        .payment-item
-          label(for="family-friends") I'm sending money to family or friends
-          input(id="family-friends", type="radio", name="payment-for", value="family_friends")
-        .payment-item
-          label(for="goods-services") I'm paying for goods or services
-          input(id="goods-services", type="radio", name="payment-for", value="goods_services")
+        div(id="payment-for")
+          .payment-item
+            label(for="family-friends") I'm sending money to family or friends
+            input(id="family-friends", type="radio", name="payment-for", value="family_friends")
+          .payment-item
+            label(for="goods-services") I'm paying for goods or services
+            input(id="goods-services", type="radio", name="payment-for", value="goods_services")
+          i(class="fa fa-times-circle")
 
     .form-actions
       input(id="reset", type="reset", value="Reset")

@@ -102,25 +102,40 @@ h1 {
   height: 16px;
 }
 
-.form-item.to i {
+.form-item i {
   display: none;
   position: absolute;
-  right: 10px;
   font-size: 22px;
 }
 
-.form-item.to.valid i.fa-check-circle {
+  /**
+   * icon placements for each field
+   */
+  .form-item.to i {
+    right: 10px;
+  }
+
+  .form-item.amount i {
+    right: 75px;
+  }
+
+  .form-item.payment-for i {
+    top: -36px; /* :( */
+    left: 180px;
+  }
+
+.form-item.valid i.fa-check-circle {
   display: inline-block;
   color: green;
 }
 
-.form-item.to.invalid i.fa-times-circle {
+.form-item.invalid i.fa-times-circle {
   display: inline-block;
   color: red;
 }
 
 .form-item #amount {
-  width: calc(100% - 130px); /* precisely set input size for responsiveness */
+  width: calc(100% - 155px); /* precisely set input size for responsiveness */
 }
 .form-item #currency {
   position: absolute;

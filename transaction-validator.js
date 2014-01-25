@@ -10,7 +10,7 @@ module.exports = (function() {
     { name: 'amount',      required: true },
     { name: 'currency',    required: true },
     { name: 'message',     required: false },
-    { name: 'payment_for', required: true }
+    { name: 'payment-for', required: true }
   ];
 
   function getSuccessMessage(currency, amount, name) {

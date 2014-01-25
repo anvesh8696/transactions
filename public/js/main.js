@@ -60,11 +60,14 @@
     },
 
     bindAmountBehavior: function() {
-      var lastValue;
+      var lastValue,
+          amountInputWrapper = SendMoney.amountInput.parent('.form-item');
 
       SendMoney.amountInput.on('input', function(e) {
         var newValue = e.target.value,
             newFormattedValue = SendMoney.formatMoney(newValue);
+
+        amountInputWrapper.removeClass('invalid');
 
         if (lastValue !== newValue) {
           SendMoney.amountInput.val(newFormattedValue);
@@ -156,6 +159,7 @@
       $('.payment-for').on('click', '.payment-item', function(e) {
         SendMoney.deactivateAllPaymentItems();
         $(this).addClass('active');
+        $(this).parents('.form-item').removeClass('invalid');
       });
     },
 
@@ -194,7 +198,7 @@
           SendMoney.updateFooterOnSuccess();
         }
         else {
-          SendMoney.handleErrors(response.messages);
+          SendMoney.handleErrors(response.errors);
         }
 
         SendMoney.overlay.hide();
@@ -214,11 +218,11 @@
 
     getFormData: function() {
       return {
-        to:          SendMoney.emailInput.val(),
-        amount:      SendMoney.amountInput.val().replace(), // remove non-numbers
-        currency:    SendMoney.currencySelector.val(),
-        message:     SendMoney.message.val(),
-        payment_for: SendMoney.paymentItems.filter('.active').find('input').val()
+        'to':          SendMoney.emailInput.val(),
+        'amount':      SendMoney.amountInput.val().replace(), // remove non-numbers
+        'currency':    SendMoney.currencySelector.val(),
+        'message':     SendMoney.message.val(),
+        'payment-for': SendMoney.paymentItems.filter('.active').find('input').val()
       }
     }
   };
