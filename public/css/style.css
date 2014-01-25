@@ -254,6 +254,10 @@ h1 {
  * Transaction History
  */
 .transactions {
+  text-align: center;
+}
+
+.transactions table {
   width: 100%;
 }
 

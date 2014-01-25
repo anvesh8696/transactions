@@ -1,13 +1,18 @@
 extends layout
 
 block content
-  table.transactions
-    tbody
-      each transaction in transactions
-        tr.row
-          td= transaction.date
-          td= transaction.name
-          td= transaction['formatted-amount']
+  .transactions
+    table
+      tbody
+        each transaction in transactions
+          tr.row
+            td= transaction.date
+            td= transaction.name
+            td= transaction['formatted-amount']
+
+    div(id="navigation")
+      a(href="/transactions/2")
+
 
 block footer
   a(href="/", class="btn btn-center") Back
