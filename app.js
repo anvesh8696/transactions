@@ -65,6 +65,8 @@ app.get('/transactions', function(req, res) {
   var currentUserId = helpers.currentUser().id
 
   res.render('transactions', {
+    bodyClasses: ['transaction-history'],
+    title: 'Transaction History',
     transactions: transactions.getFormattedTransactions(currentUserId, 0, transactionsPerQuery)
   });
 });
