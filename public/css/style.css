@@ -173,6 +173,22 @@ h1 {
 }
 
 /**
+ * Success message
+ */
+.success-msg {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.success-msg p:after {
+  display:block;
+  margin-top: 15px;
+  content: '✓';
+  color: #C0802F;
+  font-size: 400%;
+}
+
+/**
  * Footer
  */
 .footer {
@@ -200,6 +216,10 @@ h1 {
 
 .footer-content .btn-right {
   right: 0;
+}
+
+.footer-content .on-success {
+  display: none;
 }
 
 /**

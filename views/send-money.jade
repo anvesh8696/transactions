@@ -38,5 +38,10 @@ block content
       input(id="reset", type="reset", value="Reset")
 
 block footer
-  a(href="#", class="btn btn-left clear-btn") Clear
-  a(href="#", class="btn btn-right next-btn") Next
+  .default
+    a(href="#", class="btn btn-left clear-btn") Clear
+    a(href="#", class="btn btn-right next-btn") Next
+
+  .on-success
+    a(href="/send-money", class="btn btn-left") Send Money
+    a(href="/transactions", class="btn btn-right") Transaction History

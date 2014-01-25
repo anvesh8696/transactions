@@ -190,11 +190,26 @@
 
       $.post('/transactions', SendMoney.getFormData(), function(response) {
         if (response.valid) {
-
+          $('.content').html(response.message);
+          SendMoney.updateFooterOnSuccess();
+        }
+        else {
+          SendMoney.handleErrors(response.messages);
         }
 
         SendMoney.overlay.hide();
       });
+    },
+
+    updateFooterOnSuccess: function() {
+      $('footer .default').hide();
+      $('footer .on-success').show();
+    },
+
+    handleErrors: function(errors) {
+      for (error in errors) {
+        $('#' + error).parent('.form-item').addClass('invalid');
+      }
     },
 
     getFormData: function() {
