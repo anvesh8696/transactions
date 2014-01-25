@@ -16,7 +16,7 @@ This is a web-based app that allows PayPal users to send money to other users.
 * <del>Currency selection</del>
 * <del>Payment for options</del>
 * <del>Clear / Next buttons</del>
-* Handle errors after submit
+* <del>Handle errors after submit</del>
 
 ###Loading Screen
 * <del>Serialize form data on submit? REST API?</del>
