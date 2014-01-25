@@ -10,6 +10,6 @@ module.exports = (function() {
         createdAt: Date.now()
       }
     }
-  }
+  };
 
 })();
