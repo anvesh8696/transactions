@@ -44,7 +44,7 @@ var transactions = [
     currency     : 'USD',
     message      : '',
     payment_for  : 'family_friends',
-    created_at   : Date.now()
+    created_at   : Date.now() + 5
   },
   {
     id           : 3,
@@ -54,7 +54,7 @@ var transactions = [
     currency     : 'EUR',
     message      : 'coffee',
     payment_for  : 'goods_services',
-    created_at   : Date.now()
+    created_at   : Date.now() + 15
   },
   {
     id           : 4,
@@ -64,7 +64,7 @@ var transactions = [
     currency     : 'JPY',
     message      : 'coffee in japan',
     payment_for  : 'goods_services',
-    created_at   : Date.now()
+    created_at   : Date.now() + 25
   },
   {
     id           : 5,
@@ -74,7 +74,7 @@ var transactions = [
     currency     : 'EUR',
     message      : 'coffee',
     payment_for  : 'goods_services',
-    created_at   : Date.now()
+    created_at   : Date.now() + 35
   },
   {
     id           : 6,
@@ -84,7 +84,7 @@ var transactions = [
     currency     : 'EUR',
     message      : 'coffee',
     payment_for  : 'goods_services',
-    created_at   : Date.now()
+    created_at   : Date.now() + 45
   },
   {
     id           : 7,
@@ -94,7 +94,7 @@ var transactions = [
     currency     : 'EUR',
     message      : '',
     payment_for  : 'family_friends',
-    created_at   : Date.now()
+    created_at   : Date.now() + 55
   },
   {
     id           : 8,
@@ -104,7 +104,7 @@ var transactions = [
     currency     : 'EUR',
     message      : 'coffee',
     payment_for  : 'family_friends',
-    created_at   : Date.now()
+    created_at   : Date.now() + 65
   },
   {
     id           : 9,
@@ -114,7 +114,7 @@ var transactions = [
     currency     : 'USD',
     message      : '',
     payment_for  : 'family_friends',
-    created_at   : Date.now()
+    created_at   : Date.now() + 75
   },
   {
     id           : 10,
@@ -124,7 +124,7 @@ var transactions = [
     currency     : 'EUR',
     message      : 'coffee in europe',
     payment_for  : 'family_friends',
-    created_at   : Date.now()
+    created_at   : Date.now() + 85
   }
 ];
 
