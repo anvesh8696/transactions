@@ -7,6 +7,8 @@ var transactionValidator = require('./transaction-validator'),
     helpers              = require('./helpers'),
     transactions         = require('./transactions');
 
+var transactionsPerQuery = 2;
+
 // assign jade engine to .jade files
 app.engine('jade', cons.jade);
 
@@ -59,8 +61,12 @@ app.post('/transactions', function(req, res) {
 });
 
 // Transactions list
-app.get('/transactions', function(res, res) {
-  res.json(transactions.getTransactions(helpers.currentUser().id, 0, 3));
+app.get('/transactions', function(req, res) {
+  var page = req.query.page || 0,
+      currentUserId = helpers.currentUser().id,
+      offset = transactionsPerQuery * page;
+
+  res.json(transactions.getTransactions(currentUserId, offset, transactionsPerQuery));
 });
 
 app.listen(3000);
