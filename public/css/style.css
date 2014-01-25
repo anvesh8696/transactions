@@ -6,7 +6,8 @@ body {
 }
 
 h1 {
-  margin: 10px 0;
+  margin: 14px 0;
+  font-size: 1.75em;
 }
 
 .fixed-bar {
@@ -259,6 +260,7 @@ h1 {
 .transactions td {
   padding: 10px 0;
   text-align: center;
+  width: 33.33%;
 }
 
 .transactions tr:nth-child(odd) {
