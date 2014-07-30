@@ -1,5 +1,5 @@
-#PayPal Transactions
-This is a web-based app that allows PayPal users to send money to other users.
+#Transactions
+Web-based mocked app that simulates a way for users to send money to other users.
 
 * Front end is a web-based UI
 * Back end is a Node.js server with mocked data
